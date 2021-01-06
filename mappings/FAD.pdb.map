@@ -1,0 +1,72 @@
+[ molecule ]
+FAD
+
+[ martini ]
+FLA1 FLA2 FLA3 FLA4 FLA5 RIB1 RIB2 PO4B PO4A RBS1 RBS2 ADN3 ADN2 ADN1
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1 PA      PO4A
+    2 O1A     PO4A
+    3 O2A     PO4A
+    4 O5B     PO4A
+    5 C5B     RBS1
+    6 C4B     RBS1
+    7 O4B     RBS1
+    8 C3B     RBS2
+    9 O3B     RBS2
+   10 C2B     RBS2
+   11 O2B     RBS2
+   12 C1B     RBS1
+   13 N9A     ADN3
+   14 C8A     ADN3
+   15 N7A     ADN3
+   16 C5A     ADN1
+   17 C6A     ADN1
+   18 N6A     ADN1
+   19 N1A     ADN1
+   20 C2A     ADN2
+   21 N3A     ADN2
+   22 C4A     ADN2
+   23 N1      FLA5
+   24 C2      FLA5
+   25 O2      FLA5
+   26 N3      FLA4
+   27 C4      FLA4
+   28 O4      FLA4
+   29 C4X     FLA2
+   30 N5      FLA2
+   31 C5X     FLA2
+   32 C6      FLA2
+   33 C7      FLA1
+   34 C7M     FLA1
+   35 C8      FLA1
+   36 C8M     FLA1
+   37 C9      FLA3
+   38 C9A     FLA3
+   39 N10     FLA3
+   40 C10     FLA3
+   41 C1'     RIB1
+   42 C2'     RIB1
+   43 O2'     RIB1
+   44 C3'     RIB1 RIB2
+   45 O3'     RIB1 RIB2
+   46 C4'     RIB2
+   47 O4'     RIB2
+   48 C5'     RIB2
+   49 O5'     PO4B
+   50 P       PO4B
+   51 O1P     PO4B
+   52 O2P     PO4B
+   53 O3P     PO4A PO4B
+   54 HO2A    RBS2
+   55 HO3A    RBS2
+   56 H61A    ADN1
+   57 H62A    ADN1
+   58 HO2'    RIB1
+   59 HO3'    RIB1 RIB2
+   60 HO4'    RIB2
+   61 HN3     FLA4
+

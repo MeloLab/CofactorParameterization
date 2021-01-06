@@ -1,0 +1,13 @@
+To patch a gromacs-2019.6 source tree run, in the same directory:
+ patch -s -p0 < gmx_2019.6_restricted-bending-fep.patch
+--- gromacs-2019.6/src/gromacs/topology/topsort.cpp	2020-02-28 07:27:21.000000000 +0000
++++ gromacs-2019.6-free-energy_restrangles/src/gromacs/topology/topsort.cpp	2020-03-31 02:35:15.198067871 +0100
+@@ -131,6 +131,8 @@
+             bPert = FALSE;
+             break;
+         case F_RESTRANGLES:
++            bPert = FALSE;
++            break;
+         case F_RESTRDIHS:
+         case F_CBTDIHS:
+             gmx_fatal(FARGS, "Function type %s does not support currentely free energy calculations",

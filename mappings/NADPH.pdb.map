@@ -1,0 +1,67 @@
+; NADPH, same mapping as NADP+
+[ molecule ]
+NDP
+
+[ martini ]
+ADN1 ADN2 ADN3 RBSA1 RBSA2 PO4A PO4B RBSB1 RBSB2 NCT1 NCT2 NCT3 PO4C
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1  PA    PO4A
+    2  O1A   PO4A
+    3  O2A   PO4A
+    4  O5B   PO4A
+    5  C5B   RBSA1
+    6  C4B   RBSA1
+    7  O4B   RBSA1
+    8  C3B   RBSA2
+    9  O3B   RBSA2
+   10  C2B   RBSA2
+   11  O2B   PO4C RBSA2
+   12  C1B   RBSA1
+   13  N9A   ADN3
+   14  C8A   ADN3
+   15  N7A   ADN3
+   16  C5A   ADN1
+   17  C6A   ADN1
+   18  N6A   ADN1
+   19  N1A   ADN1
+   20  C2A   ADN2
+   21  N3A   ADN2
+   22  C4A   ADN2
+   23  O3    PO4A PO4B
+   24  PN    PO4B
+   25  O1N   PO4B
+   26  O2N   PO4B
+   27  O5D   PO4B
+   28  C5D   RBSB1
+   29  C4D   RBSB1
+   30  O4D   RBSB1
+   31  C3D   RBSB2
+   32  O3D   RBSB2
+   33  C2D   RBSB2
+   34  O2D   RBSB2
+   35  C1D   RBSB1
+   36  N1N   NCT1
+   37  C2N   NCT1
+   38  C3N   NCT2
+   39  C7N   NCT3
+   40  O7N   NCT3
+   41  N7N   NCT3
+   42  C4N   NCT2
+   43  C5N   NCT2
+   44  C6N   NCT1
+   45  P2B   PO4C
+   46  O1X   PO4C
+   47  O2X   PO4C
+   48  O3X   PO4C
+   49  HO3A  RBSA2 
+   50  H61A  ADN1
+   51  H62A  ADN1
+   52  HO2N  RBSB2
+   53  HO3N  RBSB2
+   54  H71N  NCT3
+   55  H72N  NCT3
+

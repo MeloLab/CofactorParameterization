@@ -1,0 +1,23 @@
+; D-Ribose 
+[ molecule ]
+RB5
+
+[ martini ]
+RBS1 RBS2
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1   C5   RBS1
+    2   O5   RBS1
+    3   C4   RBS1
+    4   O4   RBS1
+    5   C3   RBS2
+    6   O3   RBS2
+    7   C2   RBS2
+    8   O2   RBS2
+    9   C1   RBS1
+   10   HO2  RBS2
+   11   HO3  RBS2
+   12   HO5  RBS1 

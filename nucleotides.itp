@@ -1,0 +1,2149 @@
+;;;;;;;;;;;;;;;;;;;;Nucleotides
+;When using these topologies please cite:
+;  F. M. Sousa, L. M. P. Lima, C. Arnarez, M. M. Pereira, M. N. Melo
+;  Coarse-grained parameterization of nucleotide cofactors and metabolites:
+;  protonation constants, partition coefficients, and model topologies.
+;  Journal of Chemical Information and Modeling, 2021, 10.1021/acs.jcim.0c01077
+
+;;;;;;;;;;;;;;;;;;;;NOTES
+
+;Note 1: Topologies are divided into four main groups, according to their chemical structures.
+
+;Note 2: For simplicity, only the topology for the deprotonated state of each molecule is included. To protonate a phosphate bead change its charge from -2 to -1 and its type from Qa to Qda. In the table below all protonation states are discriminated. If more than one protonation state is to be included in the same system, different molecule names must be used. We suggest the "X, X*, X**" notation for deprotonated, monoprotonated and diprotonated species, respectively.
+
+;Note 3: In the molecule names below, different oxidation states are denoted as "ox" for oxidized, "sr" for semi-reduced and "r" for reduced.
+
+;Note 4: Constraints were parameterized under lincs-order=6 and lincs-iter=2. We recommend the use of settings no looser than this.
+
+;____________________________________________________________________________________________________________________________
+;|        Set        |   Acronym   |                          Molecule                        |Protonation state|Total Charge|
+;|--------------------------------------------------------------------------------------------|-----------------|------------|
+;|                   |MP           |Phosphate                                                 |deprotonated     |-2          |
+;|                   |MP*          |Phosphate                                                 |monoprotonated   |-1          |
+;|                   |DP           |Diphosphate                                               |deprotonated     |-4          |
+;|     Phosphate     |DP*          |Diphosphate                                               |monoprotonated   |-3          |
+;|       Ions        |DP**         |Diphosphate                                               |diprotonated     |-2          |
+;|                   |TP           |Triphosphate                                              |deprotonated     |-5          |
+;|                   |TP*          |Triphosphate                                              |monoprotonated   |-4          |
+;|                   |TP**         |Triphosphate                                              |diprotonated     |-3          |
+;|-------------------|-------------|----------------------------------------------------------|-----------------|------------|
+;|                   |ATP          |Adenosine Triphosphate                                    |deprotonated     |-4          |
+;|                   |ATP*         |Adenosine Triphosphate                                    |monoprotonated   |-3          |
+;|                   |ADP          |Adenosine Diphosphate                                     |deprotonated     |-3          |
+;|                   |ADP*         |Adenosine Diphosphate                                     |monoprotonated   |-2          |
+;|                   |AMP          |Adenosine Monophosphate                                   |deprotonated     |-2          |
+;|                   |AMP*         |Adenosine Monophosphate                                   |monoprotonated   |-1          |
+;|                   |cAMP         |Cyclic Adenosine Monophosphate                            |                 |-1          |
+;|     Adenosine-    |ADNN         |Adenine                                                   |                 |0           |
+;|     phosphate     |ADOS         |Adenosine                                                 |                 |0           |
+;|        Set        |ADS2P        |Adenosine-2-phosphate                                     |deprotonated     |-2          |
+;|                   |ADS2P*       |Adenosine-2-phosphate                                     |monoprotonated   |-1          |
+;|                   |A25DP        |Adenosine-2,5-diphosphate                                 |deprotonated     |-4          |
+;|                   |A25DP*       |Adenosine-2,5-diphosphate                                 |monoprotonated   |-3          |
+;|                   |A25DP*´      |Adenosine-2,5-diphosphate                                 |monoprotonated   |-3          |
+;|                   |A25DP**      |Adenosine-2,5-diphosphate                                 |diprotonated     |-2          |
+;|                   |HME          |2-(Hydroxymethoxy)ethanol                                 |                 |0           |
+;|                   |ETXM         |Ethoxymethanol                                            |                 |0           |
+;|-------------------|-------------|----------------------------------------------------------|-----------------|------------|
+;|(see Note 5 below) |NAD          |Nicotinamide Adenine Dinucleotide (ox)                    |                 |-1          |
+;|                   |NADH         |Nicotinamide Adenine Dinucleotide (r)                     |                 |-2          |
+;|                   |NADP         |Nicotinamide Adenine Dinucleotide-phosphate (ox)          |deprotonated     |-3          |
+;|                   |NADP*        |Nicotinamide Adenine Dinucleotide-phosphate (ox)          |monoprotonated   |-2          |
+;|                   |NADPH        |Nicotinamide Adenine Dinucleotide-phosphate (r)           |deprotonated     |-4          |
+;|                   |NADPH*       |Nicotinamide Adenine Dinucleotide-phosphate (r)           |monoprotonated   |-3          |
+;|                   |NMN          |Nicotinamide Mononucleotide (ox)                          |deprotonated     |-1          |
+;|                   |NMN*         |Nicotinamide Mononucleotide (ox)                          |monoprotonated   |0           |
+;|                   |NMNH         |Nicotinamide Mononucleotide (r)                           |deprotonated     |-2          |
+;|                   |NMNH*        |Nicotinamide Mononucleotide (r)                           |monoprotonated   |-1          |
+;|                   |NTOS         |Nicotinamide Riboside (ox)                                |                 |+1          |
+;|   Nicotinamide-   |NTOSH        |Nicotinamide Riboside (r)                                 |                 |0           |
+;|     adenine       |NCTM         |Nicotinamide                                              |                 |+1          |
+;|       Set         |RBOS         |D-Ribose                                                  |                 |0           |
+;|                   |RBS5P        |D-Ribose-5-phosphate                                      |deprotonated     |-2          |
+;|                   |RBS5P*       |D-Ribose-5-phosphate                                      |monoprotonated   |-1          |
+;|                   |RBS2P        |D-Ribose-2-phosphate                                      |deprotonated     |-2          |
+;|                   |RBS2P*       |D-Ribose-2-phosphate                                      |monoprotonated   |-1          |
+;|                   |R25DP        |D-Ribose-2,5-diphosphate                                  |deprotonated     |-4          |
+;|                   |R25DP*       |D-Ribose-2,5-diphosphate                                  |monoprotonated   |-3          |
+;|                   |R25DP*´      |D-Ribose-2,5-diphosphate                                  |monoprotonated   |-3          |
+;|                   |R25DP**      |D-Ribose-2,5-diphosphate                                  |diprotonated     |-2          |
+;|-------------------|-------------|----------------------------------------------------------|-----------------|------------|
+;|                   |FAD          |Flavin Adenine Dinucleotide (ox)                          |                 |-2          |
+;|                   |FADH         |Flavin Adenine Dinucleotide (sr)                          |                 |-2          |
+;|                   |FADH2        |Flavin Adenine Dinucleotide (r)                           |                 |-2          |
+;|                   |FMN          |Flavin Adenine Mononucleotide (ox)                        |deprotonated     |-2          |
+;|                   |FMN*         |Flavin Adenine Mononucleotide (ox)                        |monoprotonated   |-1          |
+;|                   |FMNH         |Flavin Adenine Mononucleotide (sr)                        |deprotonated     |-2          |
+;|                   |FMNH*        |Flavin Adenine Mononucleotide (sr)                        |monoprotonated   |-1          |
+;|                   |FMNH2        |Flavin Adenine Mononucleotide (r)                         |deprotonated     |-2          |
+;|                   |FMNH2*       |Flavin Adenine Mononucleotide (r)                         |monoprotonated   |-1          |
+;|                   |RBFL         |Riboflavin (ox)                                           |                 |0           |
+;|                   |RBFLH        |Riboflavin (sr)                                           |                 |0           |
+;|                   |RBFLH2       |Riboflavin (r)                                            |                 |0           |
+;|                   |LMFL         |Lumiflavin (ox)                                           |                 |0           |
+;|    Flavin Set     |LMFLH        |Lumiflavin (sr)                                           |                 |0           |
+;|                   |LMFLH2       |Lumiflavin (r)                                            |                 |0           |
+;|                   |IALXZ        |Isoalloxazine (ox)                                        |                 |0           |
+;|                   |IALXZH       |Isoalloxazine (sr)                                        |                 |0           |
+;|                   |IALXZH2      |Isoalloxazine (r)                                         |                 |0           |
+;|                   |ALXZ         |Alloxazine (ox)                                           |                 |0           |
+;|                   |ALXZH        |Alloxazine (sr)                                           |                 |0           |
+;|                   |ALXZH2       |Alloxazine (r)                                            |                 |0           |
+;|                   |RIB          |Ribitol                                                   |                 |0           |
+;|                   |PRYGL        |Propylene-glycol                                          |                 |0           |
+;|                   |DXRB         |Deoxyribitol                                              |                 |0           |
+;|                   |RIBP         |Ribitol-phosphate                                         |deprotonated     |-2          |
+;|                   |RIBP*        |Ribitol-phosphate                                         |monoprotonated   |-1          |
+;|-------------------|-------------|----------------------------------------------------------|-----------------|------------|
+;|                   |TPP          |Thiamine Pyrophosphate                                    |deprotonated     |-2          |
+;|                   |TPP*         |Thiamine Pyrophosphate                                    |monoprotonated   |-1          |
+;|    Thiamine Set   |TMP          |Thiamine Monophophate                                     |deprotonated     |-1          |
+;|                   |TMP*         |Thiamine Monophophate                                     |monoprotonated   |0           |
+;|                   |THI          |Thiamine                                                  |                 |+1          |
+;|                   |DAP          |2,5-Dimethyl-4-Aminopyrimidine                            |                 |0           |
+;|___________________________________________________________________________________________________________________________|
+
+
+
+
+;;;;;;;;;;;;;;;;;;;;Phosphate Ions
+
+;___________________Monophosphate
+[ moleculetype ]
+; name  nrexcl
+  MP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom    cgnr  charge  mass
+  1   Qa    1      MP     PO4     1    -2.0    72.0 ;Note 2
+
+;___________________Diphosphate
+[ moleculetype ]
+; name  nrexcl
+  DP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom    cgnr  charge   mass
+  1   Qa   1       DP     PO4A    1     -2.0     72.0 ;Note 2
+  2   Qa   1       DP     PO4B    2     -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.270
+
+;___________________Triphosphate
+[ moleculetype ]
+; name  nrexcl
+  TP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge   mass
+  1   Qa    1      TP     PO4A   1     -2.0     72.0 ;Note 2
+  2   Qa    1      TP     PO4B   2     -1.0     72.0
+  3   Qa    1      TP     PO4C   3     -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.270
+  2   3   1      0.270
+
+
+;;;;;;;;;;;;;;;;;;;; Adenosine Phosphate Set
+
+;___________________Adenosine Triphosphate
+[ moleculetype ]
+; name  nrexcl
+  ATP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SP3   1      ATP    ADN1   1     0.0     45.0
+  2   SNa   1      ATP    ADN2   2     0.0     45.0
+  3   SNa   1      ATP    ADN3   3     0.0     45.0
+  4   N0    1      ATP    RBS1   4     0.0     72.0
+  5   P4    1      ATP    RBS2   5     0.0     72.0
+  6   Qa    1      ATP    PO4A   6    -1.0     72.0
+  7   Qa    1      ATP    PO4B   7    -1.0     72.0
+  8   Qa    1      ATP    PO4C   8    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237 
+  6   7   1      0.270
+  7   8   1      0.270
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  4   6   7   10     130.0    20.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2      120.0    50.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  5  6
+  6  8
+
+;___________________Adenosine Diphosphate
+[ moleculetype ]
+; name  nrexcl
+  ADP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SP3   1      ADP    ADN1   1     0.0     45.0
+  2   SNa   1      ADP    ADN2   2     0.0     45.0
+  3   SNa   1      ADP    ADN3   3     0.0     45.0
+  4   N0    1      ADP    RBS1   4     0.0     72.0
+  5   P4    1      ADP    RBS2   5     0.0     72.0
+  6   Qa    1      ADP    PO4A   6    -1.0     72.0
+  7   Qa    1      ADP    PO4B   7    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237 
+  6   7   1      0.270
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  4   6   7   10     130.0    20.0
+  5   4   6   10     120.0    50.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  5  6
+
+;___________________Adenosine Monophosphate
+[ moleculetype ]
+; name  nrexcl
+  AMP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom    cgnr  charge  mass
+  1   SP3   1      AMP    ADN1   1     0.0     45.0
+  2   SNa   1      AMP    ADN2   2     0.0     45.0
+  3   SNa   1      AMP    ADN3   3     0.0     45.0
+  4   N0    1      AMP    RBS1   4     0.0     72.0
+  5   P4    1      AMP    RBS2   5     0.0     72.0
+  6   Qa    1      AMP    PO4    6    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  5   4   6   10     120.0    50.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  5  6
+
+;___________________Cyclic Adenosine Monophosphate
+[ moleculetype ]
+; name  nrexcl
+  cAMP   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP3   1      cAMP    ADN1   1     0.0     45.0
+  2   SNa   1      cAMP    ADN2   2     0.0     45.0
+  3   SNa   1      cAMP    ADN3   3     0.0     45.0
+  4   SN0   1      cAMP    RBS1   4     0.0     72.0
+  5   SP4   1      cAMP    RBS2   5     0.0     72.0
+  6   SQa   1      cAMP    PO4    6    -1.0     72.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  4   6   1      0.350
+  5   6   1      0.310
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+
+;___________________Adenine
+[ moleculetype ]
+; name  nrexcl
+  ADNN   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP3   1      ADNN    ADN1   1     0.0     45.0
+  2   SNa   1      ADNN    ADN2   2     0.0     45.0
+  3   SNa   1      ADNN    ADN3   3     0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+
+;___________________Adenosine
+[ moleculetype ]
+; name  nrexcl
+  ADOS   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP3   1      ADOS    ADN1   1     0.0     45.0
+  2   SNa   1      ADOS    ADN2   2     0.0     45.0
+  3   SNa   1      ADOS    ADN3   3     0.0     45.0
+  4   Nda   1      ADOS    RBS1   4     0.0     72.0
+  5   P4    1      ADOS    RBS2   5     0.0     72.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+
+;___________________Adenosine 2-phosphate
+[ moleculetype ]
+; name  nrexcl
+  ADS2P   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   SP3   1      ADS2P    ADN1   1     0.0     45.0
+  2   SNa   1      ADS2P    ADN2   2     0.0     45.0
+  3   SNa   1      ADS2P    ADN3   3     0.0     45.0
+  4   Nda   1      ADS2P    RBS1   4     0.0     72.0
+  5   SP2   1      ADS2P    RBS2   5     0.0     72.0
+  6   Qa    1      ADS2P    PO4    6    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  5   6   1      0.245
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   5   6   10     100.0    10.0
+  4   5   6    2     150.0   100.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  3  6
+  4  6
+
+;___________________Adenosine 2,5-diphosphate
+[ moleculetype ]
+; name  nrexcl
+  A25DP   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   SP3   1      A25DP    ADN1   1     0.0     45.0
+  2   SNa   1      A25DP    ADN2   2     0.0     45.0
+  3   SNa   1      A25DP    ADN3   3     0.0     45.0
+  4   N0    1      A25DP    RBS1   4     0.0     72.0
+  5   SP2   1      A25DP    RBS2   5     0.0     72.0
+  6   Qa    1      A25DP    PO4A   6    -2.0     72.0 ;Note 2
+  7   Qa    1      A25DP    PO4B   7    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  7   5   1      0.245
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  3   5   7   10     100.0    10.0
+  4   5   7    2     150.0   100.0
+  5   4   6   10     120.0    50.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  3  7
+  4  7
+  5  6
+
+;___________________2-Hydroxymethoxy Ethanol
+[ moleculetype ]
+; name  nrexcl
+  HME   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   P4    1      HME    HME1   1     0.0     72.0
+
+;___________________Ethoxymethanol
+[ moleculetype ]
+; name  nrexcl
+  ETXM   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   P1    1      ETXM   ETXM1  1     0.0     72.0
+
+
+;;;;;;;;;;;;;;;;;;;; Nicotinamide Adenine Set
+
+;Note 5: Mainly for NAD+ and NADP+, two alternative conformations are possible (the phosphoanhydride phosphates twist and bend to reach the nicotinamide ring). This may be relevant in some binding states, or in solution. This change affects the PO4B-RBSB1 and RBSB1-NCT1 bonds; the PO4A-PO4B-RBSB1 (in NAD+ only), PO4B-RBSB1-RBSB2, PO4B-RBSB1-NCT1 and RBSB1-NCT1-NCT2 angles; and the PO4A-PO4B-RBSB1-NCT1 dihedral. In the topologies of this Set, these bonded terms were tuned to reproduce the non-bent configuration; the relevant lines are marked with this Note. Specific alternate topologies are provided for NAD+ (moleculetype 'Alt_NAD') and NADP+ (moleculetype NADP+), tuned to reproduce the bent state.
+
+;Note 6: Lines marked with this Note are those involved in the general differences between NAD+/NADP+ and NADH/NADPH oxidation states, and not exclusively for the alternative Alt_NAD/Alt_NADP topologies.
+
+;Note 7: In NADPH only this dihedral becomes uniformly distributed and no potential is applied.
+
+;___________________Nicotinamide Adenine Dinucleotide (ox)
+[ moleculetype ]
+; name  nrexcl
+  NAD   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SP3   1      NAD    ADN1   1     0.0     45.0
+  2   SNa   1      NAD    ADN2   2     0.0     45.0
+  3   SNa   1      NAD    ADN3   3     0.0     45.0
+  4   N0    1      NAD    RBSA1  4     0.0     72.0
+  5   P4    1      NAD    RBSA2  5     0.0     72.0
+  6   Qa    1      NAD    PO4A   6    -1.0     72.0
+  7   Qa    1      NAD    PO4B   7    -1.0     72.0
+  8   N0    1      NAD    RBSB1  8     0.0     72.0
+  9   P4    1      NAD    RBSB2  9     0.0     72.0
+  10  SQ0   1      NAD    NCT1   10    1.0     45.0
+  11  SC5   1      NAD    NCT2   11    0.0     45.0
+  12  SP5   1      NAD    NCT3   12    0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  6   7   1      0.270
+  8   9   1      0.237
+  11  10  1      0.188
+  12  10  1      0.392
+  12  11  1      0.305
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+  7   8   1      0.415  10000.0 ;Note 5
+  10  8   1      0.334   7000.0 ;Note 5
+  10  9   1      0.384  12000.0
+
+[ angles ]
+; i   j   k  funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2       95.0    30.0 ;Note 5
+  7   6   4   10     110.0    30.0
+  7   8   9   2      120.0    25.0 ;Note 5
+  7   8   10  10     135.0    40.0 ;Note 5
+  8   10  11  2      160.0   250.0 ;Note 5
+  9   10  11  2      180.0   200.0 ;Note 6
+  9   10  12  2      120.0    50.0 ;Note 6
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+  3   4   6   7   1      170.0     2.5   1 ;Note 7
+  6   7   8   10  1      170.0     5.0   1 ;Note 5
+  8   9   11  12  1      -40.0     5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  5  6
+  9  7
+
+; Alternate configuration
+[ moleculetype ]
+; name  nrexcl
+  Alt_NAD   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SP3   1      NAD    ADN1   1     0.0     45.0
+  2   SNa   1      NAD    ADN2   2     0.0     45.0
+  3   SNa   1      NAD    ADN3   3     0.0     45.0
+  4   N0    1      NAD    RBSA1  4     0.0     72.0
+  5   P4    1      NAD    RBSA2  5     0.0     72.0
+  6   Qa    1      NAD    PO4A   6    -1.0     72.0
+  7   Qa    1      NAD    PO4B   7    -1.0     72.0
+  8   N0    1      NAD    RBSB1  8     0.0     72.0
+  9   P4    1      NAD    RBSB2  9     0.0     72.0
+  10  SQ0   1      NAD    NCT1   10    1.0     45.0
+  11  SC5   1      NAD    NCT2   11    0.0     45.0
+  12  SP5   1      NAD    NCT3   12    0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  6   7   1      0.270
+  8   9   1      0.237
+  11  10  1      0.188
+  12  10  1      0.392
+  12  11  1      0.305
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+  7   8   1      0.328  10000.0 ;Note 5
+  10  8   1      0.315  10000.0 ;Note 5
+  10  9   1      0.384  12000.0
+
+[ angles ]
+; i   j   k  funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2       85.0    70.0 ;Note 5
+  7   6   4   10     110.0    30.0
+  7   8   9   2      140.0    90.0 ;Note 5
+  7   8   10  10      83.0    50.0 ;Note 5
+  8   10  11  2      150.0   250.0 ;Note 5
+  9   10  11  2      180.0   200.0 ;Note 6
+  9   10  12  2      120.0    50.0 ;Note 6
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+  3   4   6   7   1      170.0     2.5   1 ;Note 7
+  6   7   8   10  1     -160.0    10.0   1 ;Note 5
+  8   9   11  12  1      -40.0     5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  5  6
+  9  7
+
+
+;___________________Nicotinamide Adenine Dinucleotide (r)
+[ moleculetype ]
+; name   nrexcl
+  NADH   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SP3   1      NAD    ADN1   1     0.0     45.0
+  2   SNa   1      NAD    ADN2   2     0.0     45.0
+  3   SNa   1      NAD    ADN3   3     0.0     45.0
+  4   N0    1      NAD    RBSA1  4     0.0     72.0
+  5   P4    1      NAD    RBSA2  5     0.0     72.0
+  6   Qa    1      NAD    PO4A   6    -1.0     72.0
+  7   Qa    1      NAD    PO4B   7    -1.0     72.0
+  8   N0    1      NAD    RBSB1  8     0.0     72.0
+  9   P4    1      NAD    RBSB2  9     0.0     72.0
+  10  SNa   1      NAD    NCT1   10    0.0     45.0
+  11  SC5   1      NAD    NCT2   11    0.0     45.0
+  12  SP5   1      NAD    NCT3   12    0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  6   7   1      0.270
+  8   9   1      0.237
+  11  10  1      0.188
+  12  10  1      0.392
+  12  11  1      0.305
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+  7   8   1      0.415  10000.0
+  10  8   1      0.334   7000.0
+  10  9   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  4   6   7   10     110.0    30.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2       95.0    30.0
+  7   8   9   2      120.0    25.0
+  7   8   10  10     135.0    40.0
+  8   10  11  2      160.0   250.0
+  9   10  11  2      160.0   250.0 ;Note 6
+  9   10  12  2      125.0   100.0 ;Note 6
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+  3   4   6   7   1      170.0     2.5   1 ;Note 7
+  6   7   8   10  1      170.0     5.0   1
+  8   9   11  12  1      -40.0     5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  5  6
+  9  7
+
+;___________________Nicotinamide Adenine Dinucleotide-phosphate (ox)
+[ moleculetype ]
+; name   nrexcl
+  NADP   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP3   1      NADP    ADN1   1     0.0     45.0
+  2   SNa   1      NADP    ADN2   2     0.0     45.0
+  3   SNa   1      NADP    ADN3   3     0.0     45.0
+  4   N0    1      NADP    RBSA1  4     0.0     72.0
+  5   SP2   1      NADP    RBSA2  5     0.0     72.0
+  6   Qa    1      NADP    PO4A   6    -1.0     72.0
+  7   Qa    1      NADP    PO4B   7    -1.0     72.0
+  8   N0    1      NADP    RBSB1  8     0.0     72.0
+  9   P4    1      NADP    RBSB2  9     0.0     72.0
+  10  SQ0   1      NADP    NCT1   10    1.0     45.0
+  11  SC5   1      NADP    NCT2   11    0.0     45.0
+  12  SP5   1      NADP    NCT3   12    0.0     45.0
+  13  Qa    1      NADP    PO4C   13   -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  6   7   1      0.270
+  8   9   1      0.237
+  11  10  1      0.188
+  12  10  1      0.392
+  12  11  1      0.305
+  13  5   1      0.245
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+  7   8   1      0.415  10000.0 ;Note 5
+  10  8   1      0.334   7000.0 ;Note 5
+  10  9   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  3   5   13  10      95.0   100.0
+  4   5   13   2     150.0   100.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2       95.0    30.0
+  7   6   4   10     110.0    30.0
+  7   8   9   2      120.0    25.0 ;Note 5
+  7   8   10  10     135.0    40.0 ;Note 5
+  8   10  11  2      160.0   250.0 ;Note 5
+  9   10  11  2      180.0   200.0 ;Note 6
+  9   10  12  2      120.0    50.0 ;Note 6
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+  3   4   6   7   1      170.0     2.5   1 ;Note 7
+  6   7   8   10  1      170.0     5.0   1 ;Note 5
+  8   9   11  12  1      -40.0     5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  3  13
+  4  13
+  5  6
+  9  7
+
+; Alternate configuration
+[ moleculetype ]
+; name   nrexcl
+  Alt_NADP   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP3   1      NADP    ADN1   1     0.0     45.0
+  2   SNa   1      NADP    ADN2   2     0.0     45.0
+  3   SNa   1      NADP    ADN3   3     0.0     45.0
+  4   N0    1      NADP    RBSA1  4     0.0     72.0
+  5   SP2   1      NADP    RBSA2  5     0.0     72.0
+  6   Qa    1      NADP    PO4A   6    -1.0     72.0
+  7   Qa    1      NADP    PO4B   7    -1.0     72.0
+  8   N0    1      NADP    RBSB1  8     0.0     72.0
+  9   P4    1      NADP    RBSB2  9     0.0     72.0
+  10  SQ0   1      NADP    NCT1   10    1.0     45.0
+  11  SC5   1      NADP    NCT2   11    0.0     45.0
+  12  SP5   1      NADP    NCT3   12    0.0     45.0
+  13  Qa    1      NADP    PO4C   13   -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237
+  6   7   1      0.270
+  8   9   1      0.237
+  11  10  1      0.188
+  12  10  1      0.392
+  12  11  1      0.305
+  13  5   1      0.245
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+  7   8   1      0.350   5000.0 ;Note 5
+  10  8   1      0.315  10000.0 ;Note 5
+  10  9   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  3   5   13  10      95.0   100.0
+  4   5   13   2     150.0   100.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2       95.0    30.0
+  7   6   4   10     110.0    30.0
+  7   8   9   2      120.0    50.0 ;Note 5
+  7   8   10  10     110.0    30.0 ;Note 5
+  8   10  11  2      150.0   250.0 ;Note 5
+  9   10  11  2      180.0   200.0 ;Note 6
+  9   10  12  2      120.0    50.0 ;Note 6
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+  3   4   6   7   1      170.0     2.5   1 ;Note 7
+  6   7   8   10  1     -160.0    10.0   1 ;Note 5
+  8   9   11  12  1      -40.0     5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  3  13
+  4  13
+  5  6
+  9  7
+
+
+;___________________Nicotinamide Adenine Dinucleotide-phosphate (r)
+[ moleculetype ]
+; name    nrexcl
+  NADPH   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP3   1      NADP    ADN1   1     0.0     45.0
+  2   SNa   1      NADP    ADN2   2     0.0     45.0
+  3   SNa   1      NADP    ADN3   3     0.0     45.0
+  4   N0    1      NADP    RBSA1  4     0.0     72.0
+  5   SP2   1      NADP    RBSA2  5     0.0     72.0
+  6   Qa    1      NADP    PO4A   6    -1.0     72.0
+  7   Qa    1      NADP    PO4B   7    -1.0     72.0
+  8   N0    1      NADP    RBSB1  8     0.0     72.0
+  9   P4    1      NADP    RBSB2  9     0.0     72.0
+  10  SNa   1      NADP    NCT1   10    0.0     45.0
+  11  SC5   1      NADP    NCT2   11    0.0     45.0
+  12  SP5   1      NADP    NCT3   12    0.0     45.0
+  13  Qa    1      NADP    PO4C   13   -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.235
+  1   3   1      0.306
+  2   3   1      0.284
+  4   5   1      0.237 
+  6   7   1      0.270
+  8   9   1      0.237
+  11  10  1      0.188
+  12  10  1      0.392
+  12  11  1      0.305
+  13  5   1      0.245
+
+[ bonds ]
+; i   j   funct  value  force
+  3   4   1      0.385   4000.0
+  3   5   1      0.430  15000.0
+  4   6   1      0.415  10000.0
+  7   8   1      0.415  10000.0
+  10  8   1      0.334   7000.0
+  10  9   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   5   10     140.0    60.0
+  2   3   4   10      80.0    40.0
+  3   4   5   10      83.0   100.0
+  3   4   6   10     130.0    25.0
+  3   5   13  10      95.0   100.0
+  4   5   13   2     150.0   100.0
+  4   6   7   10     110.0    30.0
+  5   4   6   10     120.0    50.0
+  6   7   8   2       95.0    30.0
+  7   8   9   2      120.0    25.0
+  7   8   10  10     135.0    40.0 
+  8   10  11  2      160.0   250.0
+  9   10  11  2      160.0   250.0 ;Note 6
+  9   10  12  2      125.0   100.0 ;Note 6
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   4   5   1     -170.0     9.0   1
+  2   3   4   5   1      -30.0     3.0   2
+  8   9   11  12  1      -40.0     5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  2  4
+  3  13
+  4  13
+  5  6
+  9  7
+
+;___________________Nicotinamide Mononucleotide (ox)
+[ moleculetype ]
+; name  nrexcl
+  NMN   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   Qa    1      NMN    PO4    1    -2.0     72.0 ;Note 2
+  2   N0    1      NMN    RBS1   2     0.0     72.0
+  3   P4    1      NMN    RBS2   3     0.0     72.0
+  4   SQ0   1      NMN    NCT1   4     1.0     45.0
+  5   SC5   1      NMN    NCT2   5     0.0     45.0
+  6   SP5   1      NMN    NCT3   6     0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  2   3   1      0.237
+  5   4   1      0.188
+  6   4   1      0.392
+  6   5   1      0.305
+
+[ bonds ]
+; i   j   funct  value  force
+  1   2   1      0.415  10000.0
+  4   2   1      0.334   7000.0
+  4   3   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   2   3   2      120.0    25.0
+  1   2   4   10     135.0    40.0
+  2   4   5   2      160.0   250.0
+  3   4   5   2      180.0   200.0
+  3   4   6   2      120.0    50.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   5   6   1      -40.0    5.0   2
+
+[ exclusions ]
+; i  j k l ...
+  3  1
+
+;___________________Nicotinamide Mononucleotide (r)
+[ moleculetype ]
+; name  nrexcl
+  NMNH   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   Qa    1      NMN    PO4    1    -2.0     72.0 ;Note 2
+  2   N0    1      NMN    RBS1   2     0.0     72.0
+  3   P4    1      NMN    RBS2   3     0.0     72.0
+  4   SNa   1      NMN    NCT1   4     0.0     45.0
+  5   SC5   1      NMN    NCT2   5     0.0     45.0
+  6   SP5   1      NMN    NCT3   6     0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  2   3   1      0.237
+  5   4   1      0.188
+  6   4   1      0.392
+  6   5   1      0.305
+
+[ bonds ]
+; i   j   funct  value  force
+  1   2   1      0.415  10000.0
+  4   2   1      0.334   7000.0
+  4   3   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   2   3   2      120.0    25.0
+  1   2   4   10     135.0    40.0
+  2   4   5   2      160.0   250.0
+  3   4   5   2      160.0   250.0
+  3   4   6   2      125.0   100.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  2   3   5   6   1      -40.0    5.0   2
+
+[ exclusions ]
+; i  j  k  l ...
+  1  3
+
+;___________________Nicotinamide Riboside (ox)
+[ moleculetype ]
+; name  nrexcl
+  NTOS   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   Nda   1      NTOS    RBS1   1     0.0     72.0
+  2   P4    1      NTOS    RBS2   2     0.0     72.0
+  3   SQ0   1      NTOS    NCT1   3     1.0     45.0
+  4   SC5   1      NTOS    NCT2   4     0.0     45.0
+  5   SP5   1      NTOS    NCT3   5     0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.237
+  3   4   1      0.188
+  3   5   1      0.392
+  4   5   1      0.305
+
+[ bonds ]
+; i   j   funct  value   force
+  1   3   1      0.334   7000.0
+  2   3   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   4   2      160.0   250.0
+  2   3   4   2      180.0   200.0
+  2   3   5   2      120.0    50.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  1   2   4   5   1      -40.0    5.0   2
+
+;___________________Nicotinamide Riboside (r)
+[ moleculetype ]
+; name  nrexcl
+  NTOSH   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   Nda   1      NTOS    RBS1   1     0.0     72.0
+  2   P4    1      NTOS    RBS2   2     0.0     72.0
+  3   SNa   1      NTOS    NCT1   3     0.0     45.0
+  4   SC5   1      NTOS    NCT2   4     0.0     45.0
+  5   SP5   1      NTOS    NCT3   5     0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.237
+  3   4   1      0.188
+  3   5   1      0.392
+  4   5   1      0.305
+
+[ bonds ]
+; i   j   funct  value  force
+  1   3   1      0.334   7000.0
+  2   3   1      0.384  12000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   3   4   2      160.0   250.0
+  2   3   4   2      160.0   250.0
+  2   3   5   2      125.0   100.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  1   2   4   5   1      -40.0    5.0   2
+
+;___________________Nicotinamide
+[ moleculetype ]
+; name   nrexcl
+  NCTM   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SP1   1      NCTM    NCT1   1     0.0     45.0
+  2   SC5   1      NCTM    NCT2   2     0.0     45.0
+  3   SP5   1      NCTM    NCT3   3     0.0     45.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.188
+  1   3   1      0.392
+  2   3   1      0.305
+
+
+;___________________Ribose
+[ moleculetype ]
+; name   nrexcl
+  RBOS   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   P2    1      RBOS     RBS1   1     0.0     72.0
+  2   P4    1      RBOS     RBS2   2     0.0     72.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.237
+
+;___________________Ribose 5-phosphate
+[ moleculetype ]
+; name    nrexcl
+  RBS5P   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   Nda   1      RBS5P    RBS1   1     0.0     72.0
+  2   P4    1      RBS5P    RBS2   2     0.0     72.0
+  3   Qa    1      RBS5P    PO4    3    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.237
+
+[ bonds ]
+; i   j   funct  value  force
+  1   3   1      0.415  10000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  2   1   3   10     120.0    50.0
+
+;___________________Ribose 2-phosphate
+[ moleculetype ]
+; name    nrexcl
+  RBS2P   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   P2    1      RBS2P    RBS1   1     0.0     72.0
+  2   SP2   1      RBS2P    RBS2   2     0.0     72.0
+  3   Qa    1      RBS2P    PO4    3    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.237
+  3   2   1      0.245
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   2   3    2     150.0   100.0
+
+[ exclusions ]
+; i  j k l ...
+  1  3
+
+;___________________Ribose 2,5-diphosphate
+[ moleculetype ]
+; name  nrexcl
+  R25DP   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   Nda   1      R25DP    RBS1   1     0.0     72.0
+  2   SP2   1      R25DP    RBS2   2     0.0     72.0
+  3   Qa    1      R25DP    PO4A   3    -2.0     72.0 ;Note 2
+  4   Qa    1      R25DP    PO4B   4    -2.0     72.0 ;Note 2
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.237
+  4   2   1      0.245
+
+[ bonds ]
+; i   j   funct  value  force
+  1   3   1      0.415  10000.0
+
+[ angles ]
+; i   j   k   funct  value   force
+  1   2   4    2     150.0   100.0
+  2   1   3   10     120.0    50.0
+
+[ exclusions ]
+; i  j k l ...
+  1  4
+  2  3
+
+;;;;;;;;;;;;;;;;;;;; Flavin Set
+
+;Note 8 - In spite of a slight bending on the Alloxazine ring system upon reduction, on the CG scale this bending is small and was disregarded (assumed to be planar).
+
+;___________________Flavin Adenine Dinucleotide (ox)
+[ moleculetype ]
+; name  nrexcl
+  FAD   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SC3   1      FAD    FLA1   1     0.0     37.9
+  2   SNa   1      FAD    FLA2   2     0.0      0.0
+  3   SN0   1      FAD    FLA3   3     0.0      0.0
+  4   SP4   1      FAD    FLA4   4     0.0    115.6
+  5   SP3   1      FAD    FLA5   5     0.0     71.5
+  6   P3    1      FAD    RIB1   6     0.0     72.0
+  7   P3    1      FAD    RIB2   7     0.0     72.0
+  8   Qa    1      FAD    PO4B   8    -1.0     72.0
+  9   Qa    1      FAD    PO4A   9    -1.0     72.0
+  10  N0    1      FAD    RBS1   10    0.0     72.0
+  11  P4    1      FAD    RBS2   11    0.0     72.0
+  12  SNa   1      FAD    ADN3   12    0.0     45.0
+  13  SNa   1      FAD    ADN2   13    0.0     45.0
+  14  SP3   1      FAD    ADN1   14    0.0     45.0
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+  8   9   1      0.298
+  10  11  1      0.237
+  12  13  1      0.284
+  12  14  1      0.306
+  13  14  1      0.235
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+  7   8   1      0.395   10000.0
+  9   10  1      0.415   10000.0
+  10  12  1      0.385    4000.0
+  11  12  1      0.430   15000.0
+
+[ angles ]
+; i   j   k     funct  value  force
+  7   8   9    10       90.0   20.0
+  8   9   10   10      100.0   40.0
+  11  10  9    10      120.0   50.0
+  11  12  14   10      140.0   60.0
+  12  10  9    10      130.0   25.0
+  12  10  11   10       83.0  100.0
+  13  12  10   10       80.0   40.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+  7   8   9   10   1    -170.0    5.0   1
+  8   9   10  12   1     170.0    2.5   1
+  13  12  10  11   1    -170.0    9.0   1
+  13  12  10  11   1     -30.0    3.0   2
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+  11  9
+
+;___________________Flavin Adenine Dinucleotide (sr)
+[ moleculetype ]
+; name  nrexcl
+  FADH   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SC3   1      FAD    FLA1   1     0.0     37.9
+  2   SNd   1      FAD    FLA2   2     0.0      0.0
+  3   SN0   1      FAD    FLA3   3     0.0      0.0
+  4   SP4   1      FAD    FLA4   4     0.0    115.6
+  5   SP3   1      FAD    FLA5   5     0.0     71.5
+  6   P3    1      FAD    RIB1   6     0.0     72.0
+  7   P3    1      FAD    RIB2   7     0.0     72.0
+  8   Qa    1      FAD    PO4B   8    -1.0     72.0
+  9   Qa    1      FAD    PO4A   9    -1.0     72.0
+  10  N0    1      FAD    RBS1   10    0.0     72.0
+  11  P4    1      FAD    RBS2   11    0.0     72.0
+  12  SNa   1      FAD    ADN3   12    0.0     45.0
+  13  SNa   1      FAD    ADN2   13    0.0     45.0
+  14  SP3   1      FAD    ADN1   14    0.0     45.0
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+  8   9   1      0.298
+  10  11  1      0.237
+  12  13  1      0.284
+  12  14  1      0.306
+  13  14  1      0.235
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+  7   8   1      0.395   10000.0
+  9   10  1      0.415   10000.0
+  10  12  1      0.385    4000.0
+  11  12  1      0.430   15000.0
+
+[ angles ]
+; i   j   k     funct  value  force
+  7   8   9    10       90.0   20.0
+  8   9   10   10      100.0   40.0
+  11  10  9    10      120.0   50.0
+  11  12  14   10      140.0   60.0
+  12  10  9    10      130.0   25.0
+  12  10  11   10       83.0  100.0
+  13  12  10   10       80.0   40.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+  7   8   9   10   1    -170.0    5.0   1
+  8   9   10  12   1     170.0    2.5   1
+  13  12  10  11   1    -170.0    9.0   1
+  13  12  10  11   1     -30.0    3.0   2
+
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+  11  9
+
+;___________________Flavin Adenine Dinucleotide (r)
+[ moleculetype ]
+; name  nrexcl
+  FADH2   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SC3   1      FAD    FLA1   1     0.0     37.9
+  2   SNd   1      FAD    FLA2   2     0.0      0.0
+  3   SN0   1      FAD    FLA3   3     0.0      0.0
+  4   SP4   1      FAD    FLA4   4     0.0    115.6
+  5   SP4   1      FAD    FLA5   5     0.0     71.5
+  6   P3    1      FAD    RIB1   6     0.0     72.0
+  7   P3    1      FAD    RIB2   7     0.0     72.0
+  8   Qa    1      FAD    PO4B   8    -1.0     72.0
+  9   Qa    1      FAD    PO4A   9    -1.0     72.0
+  10  N0    1      FAD    RBS1   10    0.0     72.0
+  11  P4    1      FAD    RBS2   11    0.0     72.0
+  12  SNa   1      FAD    ADN3   12    0.0     45.0
+  13  SNa   1      FAD    ADN2   13    0.0     45.0
+  14  SP3   1      FAD    ADN1   14    0.0     45.0
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+  8   9   1      0.298
+  10  11  1      0.237
+  12  13  1      0.284
+  12  14  1      0.306
+  13  14  1      0.235
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+  7   8   1      0.395   10000.0
+  9   10  1      0.415   10000.0
+  10  12  1      0.385    4000.0
+  11  12  1      0.430   15000.0
+
+[ angles ]
+; i   j   k     funct  value  force
+  7   8   9    10       90.0   20.0
+  8   9   10   10      100.0   40.0
+  11  10  9    10      120.0   50.0
+  11  12  14   10      140.0   60.0
+  12  10  9    10      130.0   25.0
+  12  10  11   10       83.0  100.0
+  13  12  10   10       80.0   40.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+  7   8   9   10   1    -170.0    5.0   1
+  8   9   10  12   1     170.0    2.5   1
+  13  12  10  11   1    -170.0    9.0   1
+  13  12  10  11   1     -30.0    3.0   2
+
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+  11  9
+
+;___________________Flavin Mononucleotide (ox) 
+[ moleculetype ]
+; name  nrexcl
+  FMN   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SC3   1      FMN    FLA1   1     0.0     37.9
+  2   SNa   1      FMN    FLA2   2     0.0      0.0
+  3   SN0   1      FMN    FLA3   3     0.0      0.0
+  4   SP4   1      FMN    FLA4   4     0.0    115.6
+  5   SP3   1      FMN    FLA5   5     0.0     71.5
+  6   P3    1      FMN    RIB1   6     0.0     72.0
+  7   P3    1      FMN    RIB2   7     0.0     72.0
+  8   Qa    1      FMN    PO4    8    -2.0     72.0 ;Note 2
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+  7   8   1      0.395   10000.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Flavin Mononucleotide (sr)
+[ moleculetype ]
+; name  nrexcl
+  FMNH   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SC3   1      FMN    FLA1   1     0.0     37.9
+  2   SNd   1      FMN    FLA2   2     0.0      0.0
+  3   SN0   1      FMN    FLA3   3     0.0      0.0
+  4   SP4   1      FMN    FLA4   4     0.0    115.6
+  5   SP3   1      FMN    FLA5   5     0.0     71.5
+  6   P3    1      FMN    RIB1   6     0.0     72.0
+  7   P3    1      FMN    RIB2   7     0.0     72.0
+  8   Qa    1      FMN    PO4    8    -2.0     72.0 ;Note 2
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+  7   8   1      0.395   10000.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Flavin Mononucleotide (r)
+[ moleculetype ]
+; name  nrexcl
+  FMNH2   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   SC3   1      FMN    FLA1   1     0.0     37.9
+  2   SNd   1      FMN    FLA2   2     0.0      0.0
+  3   SN0   1      FMN    FLA3   3     0.0      0.0
+  4   SP4   1      FMN    FLA4   4     0.0    115.6
+  5   SP4   1      FMN    FLA5   5     0.0     71.5
+  6   P3    1      FMN    RIB1   6     0.0     72.0
+  7   P3    1      FMN    RIB2   7     0.0     72.0
+  8   Qa    1      FMN    PO4    8    -2.0     72.0 ;Note 2
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+  7   8   1      0.395   10000.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Riboflavin (ox)
+[ moleculetype ]
+; name  nrexcl
+  RBFL   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC3   1      RBFL    FLA1   1     0.0     37.9
+  2   SNa   1      RBFL    FLA2   2     0.0      0.0
+  3   SN0   1      RBFL    FLA3   3     0.0      0.0
+  4   SP4   1      RBFL    FLA4   4     0.0    115.6
+  5   SP3   1      RBFL    FLA5   5     0.0     71.5
+  6   P3    1      RBFL    RIB1   6     0.0     72.0
+  7   P4    1      RBFL    RIB2   7     0.0     72.0
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Riboflavin (sr)
+[ moleculetype ]
+; name  nrexcl
+  RBFLH   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC3   1      RBFL    FLA1   1     0.0     37.9
+  2   SNd   1      RBFL    FLA2   2     0.0      0.0
+  3   SN0   1      RBFL    FLA3   3     0.0      0.0
+  4   SP4   1      RBFL    FLA4   4     0.0    115.6
+  5   SP3   1      RBFL    FLA5   5     0.0     71.5
+  6   P3    1      RBFL    RIB1   6     0.0     72.0
+  7   P4    1      RBFL    RIB2   7     0.0     72.0
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Riboflavin (r)
+[ moleculetype ]
+; name  nrexcl
+  RBFLH2   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC3   1      RBFL    FLA1   1     0.0     37.9
+  2   SNd   1      RBFL    FLA2   2     0.0      0.0
+  3   SN0   1      RBFL    FLA3   3     0.0      0.0
+  4   SP4   1      RBFL    FLA4   4     0.0    115.6
+  5   SP4   1      RBFL    FLA5   5     0.0     71.5
+  6   P3    1      RBFL    RIB1   6     0.0     72.0
+  7   P4    1      RBFL    RIB2   7     0.0     72.0
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+  6   7   1      0.205
+
+[ bonds ]
+; i   j   funct  value   force
+  3   6   1      0.340   10000.0
+  5   6   1      0.475    5000.0
+
+[ dihedrals ]
+; i   j   k   l   funct  value   force  mult
+  6   3   5   4    1      15.0   20.0   1
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Lumiflavin (ox)
+[ moleculetype ]
+; name  nrexcl
+  LMFL   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC3   1      LMFL    FLA1   1     0.0     37.9
+  2   SNa   1      LMFL    FLA2   2     0.0      0.0
+  3   SN0   1      LMFL    FLA3   3     0.0      0.0
+  4   SP4   1      LMFL    FLA4   4     0.0    115.6
+  5   SP3   1      LMFL    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Lumiflavin (sr)
+[ moleculetype ]
+; name    nrexcl
+  LMFLH   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC3   1      LMFL    FLA1   1     0.0     37.9
+  2   SNd   1      LMFL    FLA2   2     0.0      0.0
+  3   SN0   1      LMFL    FLA3   3     0.0      0.0
+  4   SP4   1      LMFL    FLA4   4     0.0    115.6
+  5   SP3   1      LMFL    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Lumiflavin (r)
+[ moleculetype ]
+; name    nrexcl
+  LMFLH2   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC3   1      LMFL    FLA1   1     0.0     37.9
+  2   SNd   1      LMFL    FLA2   2     0.0      0.0
+  3   SN0   1      LMFL    FLA3   3     0.0      0.0
+  4   SP4   1      LMFL    FLA4   4     0.0    115.6
+  5   SP4   1      LMFL    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Isoalloxazine (ox)
+[ moleculetype ]
+; name    nrexcl
+  IALXZ   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   SC3   1      IALXZ    FLA1   1     0.0     37.9
+  2   SNa   1      IALXZ    FLA2   2     0.0      0.0
+  3   SNa   1      IALXZ    FLA3   3     0.0      0.0
+  4   SP4   1      IALXZ    FLA4   4     0.0    115.6
+  5   SP3   1      IALXZ    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Isoalloxazine (sr)
+[ moleculetype ]
+; name    nrexcl
+  IALXZH   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   SC3   1      IALXZ    FLA1   1     0.0     37.9
+  2   SNd   1      IALXZ    FLA2   2     0.0      0.0
+  3   SNa   1      IALXZ    FLA3   3     0.0      0.0
+  4   SP4   1      IALXZ    FLA4   4     0.0    115.6
+  5   SP3   1      IALXZ    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Isoalloxazine (r)
+[ moleculetype ]
+; name      nrexcl
+  IALXZH2   1
+
+[ atoms ]
+; nr  type  resnr  resid    atom   cgnr  charge  mass
+  1   SC3   1      IALXZ    FLA1   1     0.0     37.9
+  2   SNd   1      IALXZ    FLA2   2     0.0      0.0
+  3   SNa   1      IALXZ    FLA3   3     0.0      0.0
+  4   SP4   1      IALXZ    FLA4   4     0.0    115.6
+  5   SP4   1      IALXZ    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Alloxazine (ox)
+[ moleculetype ]
+; name  nrexcl
+  ALXZ   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC5   1      ALXZ    FLA1   1     0.0     37.9
+  2   SNa   1      ALXZ    FLA2   2     0.0      0.0
+  3   SNa   1      ALXZ    FLA3   3     0.0      0.0
+  4   SP4   1      ALXZ    FLA4   4     0.0    115.6
+  5   SP3   1      ALXZ    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Alloxazine (sr)
+[ moleculetype ]
+; name    nrexcl
+  ALXZH   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC5   1      ALXZ    FLA1   1     0.0     37.9
+  2   SNd   1      ALXZ    FLA2   2     0.0      0.0
+  3   SNa   1      ALXZ    FLA3   3     0.0      0.0
+  4   SP4   1      ALXZ    FLA4   4     0.0    115.6
+  5   SP3   1      ALXZ    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Alloxazine (r)
+[ moleculetype ]
+; name     nrexcl
+  ALXZH2   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   SC5   1      ALXZ    FLA1   1     0.0     37.9
+  2   SNd   1      ALXZ    FLA2   2     0.0      0.0
+  3   SNa   1      ALXZ    FLA3   3     0.0      0.0
+  4   SP4   1      ALXZ    FLA4   4     0.0    115.6
+  5   SP4   1      ALXZ    FLA5   5     0.0     71.5
+
+[ virtual_sites3 ]
+ 2   1  4  5  1   0.58763  -0.05956
+ 3   1  4  5  1  -0.21055   0.66100
+
+[ constraints ]
+; i   j   funct  value
+  1   4   1      0.729
+  1   5   1      0.796
+  4   5   1      0.288
+
+[ exclusions ]
+; i   j   k   l ...
+  1   2   3
+  2   3   4   5
+  3   4   5
+
+;___________________Ribitol
+[ moleculetype ]
+; name  nrexcl
+  RIB   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   P4    1      RIB    RIB1   1     0.0     72.0
+  2   P4    1      RIB    RIB2   2     0.0     72.0
+
+[ constraints ]
+; i   j   funct  value
+  1   2   1      0.205 
+
+
+;___________________Propylene Glycol
+[ moleculetype ]
+; name  nrexcl
+  PRYGL   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom  cgnr  charge  mass
+  1   P3    1      PRYGL  RIB   1     0.0     72.0
+
+;___________________5-Deoxyribitol
+[ moleculetype ]
+; name  nrexcl
+  DXRB   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge  mass
+  1   P3    1      DXRB   RIB1   1     0.0     72.0
+  2   P4    1      DXRB   RIB2   2     0.0     72.0
+
+[ constraints ]
+  1   2   1      0.205
+
+;___________________Ribitol-phosphate
+[ moleculetype ]
+; name    nrexcl
+  RIBP   1
+
+[ atoms ]
+; nr  type  resnr  resid   atom   cgnr  charge  mass
+  1   P3    1      RIBP    RIB1   1     0.0     72.0
+  2   P3    1      RIBP    RIB2   2     0.0     72.0
+  3   Qa    1      RIBP    PO4    3    -2.0     72.0 ;Note 2
+
+[ bonds ]
+; i   j   funct  value   force
+  2   3   1      0.395   10000.0
+
+[ constraints ]
+  1   2   1      0.205
+
+
+;;;;;;;;;;;;;;;;;;;;; Thiamine Set
+
+;___________________Thiamine-Pyrophosphate
+[ moleculetype ]
+; name  nrexcl
+  TPP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom   cgnr  charge
+  1   SP3   1      TPP    THI1   1
+  2   SNa   1      TPP    THI2   2
+  3   SC3   1      TPP    THI3   3
+  4   SQ0   1      TPP    THI4   4      1.0
+  5   P1    1      TPP    THI5   5
+  6   Qa    1      TPP    PO4A   6     -1.0
+  7   Qa    1      TPP    PO4B   7     -2.0 ;Note 2
+
+[ constraints ]
+; i  j  funct  value
+  1  2  1      0.290
+  1  3  1      0.250
+  2  3  1      0.330
+  6  7  1      0.272
+
+[ bonds ]
+; i  j  funct  value  force
+  3  4  1      0.300  10000.0
+  4  5  1      0.270   5000.0
+  5  6  1      0.300   1000.0
+
+[ angles ]
+; i  j  k  funct  value  force
+  1  3  4  10     110.0   75.0
+  2  3  4   2     155.0  100.0
+  3  4  5  10     140.0  200.0
+  4  5  6  10     100.0   20.0
+
+[ dihedrals ]
+; i  j  k  l  funct  value   force  mult
+  1  3  4  5  1      6.5      3.0    2
+  3  4  5  6  1      10       5.0    2
+
+
+;___________________Thiamine-Monophosphate
+[ moleculetype ]
+; name  nrexcl
+  TMP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom  cgnr  charge
+  1   SP3   1      TMP    THI1   1
+  2   SNa   1      TMP    THI2   2
+  3   SC3   1      TMP    THI3   3
+  4   SQ0   1      TMP    THI4   4      1.0
+  5   P1    1      TMP    THI5   5
+  6   Qa    1      TMP    PO4    6     -2.0
+
+[ constraints ]
+; i  j  funct  value
+  1  2  1      0.290
+  1  3  1      0.250
+  2  3  1      0.330
+
+[ bonds ]
+; i  j  funct  value  force
+  3  4  1      0.300  10000.0
+  4  5  1      0.270   5000.0
+  5  6  1      0.300   1000.0
+
+[ angles ]
+; i  j  k  funct  value  force
+  1  3  4  10     110.0   75.0
+  2  3  4   2     155.0  100.0
+  3  4  5  10     140.0  200.0
+  4  5  6  10     100.0   20.0
+
+[ dihedrals ]
+; i  j  k  l  funct  value   force  mult
+  1  3  4  5  1      6.5      3.0    2
+  3  4  5  6  1      10       5.0    2
+
+;___________________Thiamine
+[ moleculetype ]
+; name  nrexcl
+  THI   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom  cgnr  charge
+  1   SP3   1      THI    THI1   1
+  2   SNa   1      THI    THI2   2
+  3   SC3   1      THI    THI3   3
+  4   SQ0   1      THI    THI4   4     1.0
+  5   P2    1      THI    THI5   5
+
+[ constraints ]
+; i  j  funct  value
+  1  2  1      0.290
+  1  3  1      0.250
+  2  3  1      0.330
+
+[ bonds ]
+; i  j  funct  value  force
+  3  4  1      0.300  10000.0
+  4  5  1      0.270   5000.0
+
+[ angles ]
+; i  j  k  funct  value  force
+  1  3  4  10     110.0   75.0
+  2  3  4   2     155.0  100.0
+  3  4  5  10     140.0  200.0
+
+[ dihedrals ]
+; i  j  k  l  funct  value   force  mult
+  1  3  4  5  1      6.5      3.0    2
+
+;__________________2,5-Dimethyl-4-Aminopyrimidine
+[ moleculetype ]
+; name  nrexcl
+  DAP   1
+
+[ atoms ]
+; nr  type  resnr  resid  atom  cgnr  charge
+  1   SP3   1      DAP    THI1   1
+  2   SNa   1      DAP    THI2   2
+  3   SC3   1      DAP    THI3   3
+
+[ constraints ]
+; i  j  funct  value
+  1  2  1      0.290
+  1  3  1      0.250
+  2  3  1      0.330
+
+

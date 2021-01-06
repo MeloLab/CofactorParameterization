@@ -1,0 +1,38 @@
+[ molecule ]
+AMP
+
+[ martini ]
+ADN1 ADN2 ADN3 RBS1 RBS2 PO4
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1   P      PO4
+    2   O1P    PO4
+    3   O2P    PO4
+    4   O3P    PO4
+    5   O5'    PO4
+    6   C5'    RBS1
+    7   C4'    RBS1
+    8   O4'    RBS1
+    9   C3'    RBS2
+   10   O3'    RBS2
+   11   C2'    RBS2
+   12   O2'    RBS2
+   13   C1'    RBS1
+   14   N9     ADN3
+   15   C8     ADN3
+   16   N7     ADN3
+   17   C5     ADN1
+   18   C6     ADN1
+   19   N6     ADN1
+   20   N1     ADN1
+   21   C2     ADN2
+   22   N3     ADN2
+   23   C4     ADN2
+   24   HO2'   RBS2
+   25   HO3'   RBS2
+   26   HN61   ADN1
+   27   HN62   ADN1
+

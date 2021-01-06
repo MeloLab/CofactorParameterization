@@ -1,0 +1,36 @@
+; Thiamine Monophosphate
+[ molecule ]
+TPS
+
+[ martini ]
+THI1 THI2 THI3 THI4 THI5 PO4
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1  CM2  THI2
+    2  N3   THI4
+    3  C2   THI4
+    4  S1   THI5
+    5  C5   THI5
+    6  C4   THI4
+    7  CM4  THI4
+    8  C6   THI5
+    9  C7   THI5
+   10  O7   THI5 PO4
+   11  N1A  THI2
+   12  C2A  THI2
+   13  N3A  THI1
+   14  C4A  THI1
+   15  N4A  THI1
+   16  C5A  THI3
+   17  C6A  THI3
+   18  C7A  THI3
+   19  P1   PO4
+   20  O1   PO4
+   21  O2   PO4
+   22  O3   PO4
+   23  H41N THI1
+   24  H42N THI1
+

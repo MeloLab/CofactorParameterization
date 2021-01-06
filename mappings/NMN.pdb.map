@@ -1,0 +1,38 @@
+; Nicotinamide Mononucleotide
+[ molecule ]
+NMN
+
+[ martini ]
+PO4 RBS1 RBS2 NCT1 NCT2 NCT3
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1  O3P   PO4
+    2  P     PO4
+    3  O1P   PO4
+    4  O2P   PO4
+    5  O5R   PO4
+    6  C5R   RBS1
+    7  C4R   RBS1
+    8  O4R   RBS1
+    9  C3R   RBS2
+   10  O3R   RBS2
+   11  C2R   RBS2
+   12  O2R   RBS2
+   13  C1R   RBS1
+   14  N1    NCT1
+   15  C2    NCT1
+   16  C3    NCT2
+   17  C7    NCT3
+   18  O7    NCT3
+   19  N7    NCT3
+   20  C4    NCT2
+   21  C5    NCT2
+   22  C6    NCT1
+   23  H2RO  RBS2
+   24  H3RO  RBS2 
+   25  HN71  NCT3  
+   26  HN72  NCT3  
+

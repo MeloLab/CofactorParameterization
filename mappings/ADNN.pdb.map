@@ -1,0 +1,23 @@
+; Adenine
+[ molecule ]
+ADE
+
+[ martini ]
+ADN1 ADN2 ADN3
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1   N9     ADN3
+    2   C8     ADN3
+    3   N7     ADN3
+    4   C5     ADN1
+    5   C6     ADN1
+    6   N6     ADN1
+    7   N1     ADN1
+    8   C2     ADN2
+    9   N3     ADN2
+   10   C4     ADN2
+   11   HN61   ADN1
+   12   HN62   ADN1

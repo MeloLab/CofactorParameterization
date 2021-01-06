@@ -1,0 +1,46 @@
+[ molecule ]
+FMN
+
+[ martini ]
+FLA1 FLA2 FLA3 FLA4 FLA5 RIB1 RIB2 PO4
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1 N1    FLA5
+    2 C2    FLA5
+    3 O2    FLA5
+    4 N3    FLA4
+    5 C4    FLA4
+    6 O4    FLA4
+    7 C4A   FLA2
+    8 N5    FLA2
+    9 C5A   FLA2
+   10 C6    FLA2
+   11 C7    FLA1
+   12 C7M   FLA1
+   13 C8    FLA1
+   14 C8M   FLA1
+   15 C9    FLA3
+   16 C9A   FLA3
+   17 N10   FLA3
+   18 C10   FLA3
+   19 C1'   RIB1
+   20 C2'   RIB1
+   21 O2'   RIB1
+   22 C3'   RIB1 RIB2
+   23 O3'   RIB1 RIB2
+   24 C4'   RIB2
+   25 O4'   RIB2
+   26 C5'   RIB2
+   27 O5'   PO4
+   28 P     PO4
+   29 O1P   PO4
+   30 O2P   PO4
+   31 O3P   PO4
+   32 HN3   FLA3
+   33 HO2'  RIB1
+   34 HO3'  RIB1 RIB2
+   35 HO4'  RIB2
+

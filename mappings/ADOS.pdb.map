@@ -1,0 +1,35 @@
+; Adenosine
+[ molecule ]
+ADN
+
+[ martini ]
+ADN1 ADN2 ADN3 RBS1 RBS2
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1   O5'    RBS1
+    2   C5'    RBS1
+    3   C4'    RBS1
+    4   O4'    RBS1
+    5   C3'    RBS2
+    6   O3'    RBS2
+    7   C2'    RBS2
+    8   O2'    RBS2
+    9   C1'    RBS1
+   10   N9     ADN3
+   11   C8     ADN3
+   12   N7     ADN3
+   13   C5     ADN1
+   14   C6     ADN1
+   15   N6     ADN1
+   16   N1     ADN1
+   17   C2     ADN2
+   18   N3     ADN2
+   19   C4     ADN2
+   20   HO2'   RBS2
+   21   HO3'   RBS2
+   22   HO5'   RBS1 
+   23   HN61   ADN1
+   24   HN62   ADN1

@@ -1,0 +1,33 @@
+; Thiamine
+;  listed in the pdb ligand database as 'Thiamin'
+[ molecule ]
+VIB
+
+[ martini ]
+THI1 THI2 THI3 THI4 THI5
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1 CM2   THI2
+    2 N4A   THI1
+    3 CM4   THI4
+    4 O1    THI5
+    5 C7    THI5
+    6 C6    THI5
+    7 C2    THI4
+    8 S1    THI5
+    9 C5    THI5
+   10 C4    THI4
+   11 N3    THI4
+   12 C7A   THI3
+   13 C4A   THI1
+   14 N3A   THI1
+   15 C2A   THI2
+   16 N1A   THI2
+   17 C6A   THI3
+   18 C5A   THI3
+   19 H4A1  THI1
+   20 H4A2  THI1
+

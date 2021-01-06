@@ -1,0 +1,42 @@
+; Thiamine Pyrophosphate
+;  also listed in the pdb ligand database as 'Thiamin Diphosphate' (TDP), with
+;  a different atom nomenclature (incompatible with this map).
+[ molecule ]
+TPP
+
+[ martini ]
+THI1 THI2 THI3 THI4 THI5 PO4A PO4B
+
+[ mapping ]
+charmm
+
+[ atoms ]
+    1  N1'  THI2
+    2  C2'  THI2
+    3  CM2  THI2
+    4  N3'  THI1
+    5  C4'  THI1
+    6  N4'  THI1
+    7  C5'  THI3
+    8  C6'  THI3
+    9  C7'  THI3
+   10  N3   THI4
+   11  C2   THI4
+   12  S1   THI5
+   13  C5   THI5
+   14  C4   THI4
+   15  CM4  THI4
+   16  C6   THI5
+   17  C7   THI5
+   18  O7   THI5 PO4A
+   19  PA   PO4A
+   20  O1A  PO4A
+   21  O2A  PO4A
+   22  O3A  PO4A PO4B
+   23  PB   PO4B
+   24  O1B  PO4B
+   25  O2B  PO4B
+   26  O3B  PO4B
+   27  HN41 THI1
+   28  HN42 THI1
+
