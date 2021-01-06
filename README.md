@@ -9,8 +9,8 @@ Journal of Chemical Information and Modeling, 2021, [10.1021/acs.jcim.0c01077](h
 
 ### Contents
 
-This repo contains several files stemming from/supporting the above.mentioned paper:
- - Two molecule topology description files, in text format compatible with the GROMACS software (`nucleotides.itp` contains the CG parameters for all the parameterized molecules, and `gromos_extra.itp` contains the united-atom GROMOS parameters used for TPP and FAD, not available in the GROMOS distribution);
+This repo contains several files stemming from/supporting the above-mentioned paper:
+ - Two molecule topology description files, in text format compatible with the GROMACS software (`nucleotides.itp` contains the Martini CG parameters for all the parameterized molecules, and `gromos_extra.itp` contains the united-atom GROMOS parameters used for TPP and FAD, not available in the GROMOS distribution);
  - Subdirectory `mappings` with atomistic-to-CG mapping descriptions for automation of conversion from the PDB or from GROMOS atomistic structures, for use with the backward resolution transformation script;
  - The `gmx_2019.6_restricted-bending-fep.patch` patch file describing a small change necessary for GROMACS free-energy perturbation code compatibility with the use of restricted bending angle potentials (as detailed in the paper's Supporting Section S3.6).
 
