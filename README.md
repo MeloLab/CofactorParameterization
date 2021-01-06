@@ -1,8 +1,10 @@
 ### Citation
 
 When using these files please cite:
+
 F. M. Sousa, L. M. P. Lima, C. Arnarez, M. M. Pereira, M. N. Melo
 Coarse-grained parameterization of nucleotide cofactors and metabolites: protonation constants, partition coefficients, and model topologies.
+
 Journal of Chemical Information and Modeling, 2021, [10.1021/acs.jcim.0c01077](https://doi.org/10.1021/acs.jcim.0c01077)
 
 ### Contents
