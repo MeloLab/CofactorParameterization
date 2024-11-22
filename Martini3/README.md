@@ -5,32 +5,45 @@ manuscript is in preparation, but part of the development has been described
 in [R. Barriga's MSc. thesis](https://run.unl.pt/bitstream/10362/151163/1/Thesis_RodrigoBarrigaAlves%20-%20Final%20Version.pdf).
 
 The parameters, in GROMACS format, are in `nucleotides.itp`.
-They are currently considered beta-version.
+They are currently considered v0.9 (practically final), pending
+publication/review, and have undergone some changes from the ones in R.
+Barriga's thesis, including the extension to new molecules.
+You can find the parameters used in the thesis under the
+[`M3_beta tag`](https://github.com/MeloLab/CofactorParameterization/tree/M3_beta).
 
 ## Included molecules
 
 - Monophosphate
 - Diphosphate
 - Triphosphate
+- Adenosine triphosphate (ATP)
+- Adenosine diphosphate (ADP)
+- Adenosine monophosphate (AMP)
 - Adenosine
-- Adenosine Triphosphate
-- Adenosine Diphosphate
-- Adenosine Monophosphate
-- Nicotinamide Adenine Dinucleotide (ox)
-- Nicotinamide Adenine Dinucleotide (r)
-- Nicotinamide Riboside
-- Nicotinamide Adenine Dinucleotide-phosphate (ox)
-- Nicotinamide Adenine Dinucleotide-phosphate (r)
-- Flavin Adenine Dinucleotide (ox)
-- Flavin Adenine Dinucleotide (r)
-- Flavin Mononucleotide (ox)
-- Riboflavin (ox)
-- Thiamine Pyrophosphate
-- Thiamine Monophosphate
+- Nicotinamide adenine dinucleotide, oxidized form (NAD+)
+- Nicotinamide adenine dinucleotide, reduced form (NADH)
+- Nicotinamide adenine dinucleotide phosphate, oxidized form (NADP+)
+- Nicotinamide adenine dinucleotide phosphate, reduced form (NADPH)
+- Nicotinamide mononucleotide, oxidized form (NMN)
+- Nicotinamide mononucleotide, reduced form (NMNH)
+- Nicotinamide riboside, oxidized form
+- Nicotinamide riboside, reduced form
+- Flavin adenine dinucleotide, oxidized form (FAD)
+- Flavin adenine dinucleotide, semiquinone form (FADH)
+- Flavin adenine dinucleotide, reduced form (FADH2)
+- Flavin mononucleotide, oxidized form (FMN)
+- Flavin mononucleotide, semiquinone form (FMNH)
+- Flavin mononucleotide, reduced form (FMNH2)
+- Riboflavin, oxidized form
+- Riboflavin, semiquinone form
+- Riboflavin, reduced form
+- Thiamine pyrophosphate
+- Thiamine monophosphate
 - Thiamine
 - 2,5-Dimethyl-4-Aminopyrimidine
 
 ## Extra files
+
 The mapping files from the reference GROMOS54A7 structures are included under
 `mappings`. Only the main nucleotides ATP, NADPH, NADP+, NADH, NAD+, FAD and TPP
 were parameterized from atomistic data; the remaining topologies were obtained
