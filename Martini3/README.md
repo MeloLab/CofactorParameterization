@@ -5,9 +5,10 @@ manuscript is in preparation, but part of the development has been described
 in [R. Barriga's MSc. thesis](https://run.unl.pt/bitstream/10362/151163/1/Thesis_RodrigoBarrigaAlves%20-%20Final%20Version.pdf).
 
 The parameters, in GROMACS format, are in `nucleotides.itp`.
-They are currently considered v0.9 (practically final), pending
+They are currently considered v0.91 (practically final), pending
 publication/review, and have undergone some changes from the ones in R.
-Barriga's thesis, including the extension to new molecules.
+Barriga's thesis, including the extension to new molecules (check the commit
+logs for more details).
 You can find the parameters used in the thesis under the
 [`M3_beta tag`](https://github.com/MeloLab/CofactorParameterization/tree/M3_beta).
 
@@ -28,6 +29,7 @@ You can find the parameters used in the thesis under the
 - Nicotinamide mononucleotide, reduced form (NMNH)
 - Nicotinamide riboside, oxidized form
 - Nicotinamide riboside, reduced form
+- Nicotinamide
 - Flavin adenine dinucleotide, oxidized form (FAD)
 - Flavin adenine dinucleotide, semiquinone form (FADH)
 - Flavin adenine dinucleotide, reduced form (FADH2)
